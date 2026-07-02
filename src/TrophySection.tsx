@@ -83,10 +83,14 @@ export default function TrophySection({ role, myTrophies }: TrophySectionProps) 
       {/* Kurzübersicht */}
       {myTrophies.length > 0 && (
         <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-          {[['gold', goldCount], ['silver', silverCount], ['bronze', bronzeCount]].map(([rank, count]) => {
+          {[
+            { rank: 'gold', count: goldCount },
+            { rank: 'silver', count: silverCount },
+            { rank: 'bronze', count: bronzeCount }
+          ].map(({ rank, count }) => {
             const rc = rankConfig[rank as keyof typeof rankConfig];
             return count > 0 ? (
-              <div key={rank as string} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '1.1rem' }}>
+              <div key={rank} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '1.1rem' }}>
                 <span>{rc.emoji}</span>
                 <strong style={{ color: rc.color }}>×{count}</strong>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{rc.label}</span>
